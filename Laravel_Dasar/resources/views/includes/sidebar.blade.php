@@ -26,18 +26,35 @@
     Panels
   </div>
 
-  <!-- Nav Item - Charts -->
+    <!-- Nav Item - Pages Collapse Menu -->
   <li class="nav-item">
-    <a class="nav-link" href="charts.html">
-      <i class="fas fa-fw fa-folder"></i>
-      <span>Companies</span></a>
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+      <i class="fas fa-fw fa-cog"></i>
+      <span>Companies</span>
+    </a>
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+      <div class="bg-white py-2 collapse-inner rounded">
+        <a class="collapse-item" href="{{ route ('companies.index') }}">Preview</a>
+        <a class="collapse-item" href="{{ route ('companies.create') }}">Add Company</a>
+      </div>
+    </div>
   </li>
 
-  <!-- Nav Item - Tables -->
+  <!-- Divider -->
+  <hr class="sidebar-divider">
+
+  <!-- Nav Item - Utilities Collapse Menu -->
   <li class="nav-item">
-    <a class="nav-link" href="tables.html">
-      <i class="fas fa-folder-plus"></i>
-      <span>Tambah Blogs</span></a>
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+      <i class="fas fa-fw fa-wrench"></i>
+      <span>Employees</span>
+    </a>
+    <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+      <div class="bg-white py-2 collapse-inner rounded">
+        <a class="collapse-item" href="{{route('employees.index')}}">Preview</a>
+        <a class="collapse-item" href="{{route('employees.create')}}">Add Employee</a>
+      </div>
+    </div>
   </li>
 
   <!-- Divider -->

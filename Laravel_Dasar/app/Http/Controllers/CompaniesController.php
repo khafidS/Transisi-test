@@ -2,10 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CompanyRequest;
+use App\Models\Company;
 use Illuminate\Http\Request;
 
 class CompaniesController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +25,11 @@ class CompaniesController extends Controller
      */
     public function index()
     {
-        //
+        $items = Company::all();
+        // dd($items);
+        return view ('pages.companies.index',[
+            'items' => $items
+        ]);
     }
 
     /**
@@ -45,7 +61,7 @@ class CompaniesController extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**
@@ -56,7 +72,10 @@ class CompaniesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $items = Company::findOrFail($id);
+        return view('pages.companies.edit',[
+            'items' => $items
+        ]);
     }
 
     /**
@@ -66,9 +85,15 @@ class CompaniesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CompanyRequest $request, $id)
     {
-        //
+        Company::where('id', $id)
+                ->update(
+                    [
+                        'nama' => $request->nama,
+                        'email' => $request->price
+                    ]
+                );
     }
 
     /**

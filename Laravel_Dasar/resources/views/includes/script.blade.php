@@ -2,7 +2,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
   
   <!-- Bootstrap core JavaScript-->
-  <script src="{{url('backend/vendor/jquery/jquery.min.js')}}"></script>
+  {{-- <script src="{{url('backend/vendor/jquery/jquery.min.js')}}"></script> --}}
   <script src="{{url('backend/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 
   <!-- Core plugin JavaScript-->
@@ -21,3 +21,20 @@
   {{-- ckeditor --}}
 
   <script src="https://cdn.ckeditor.com/ckeditor5/22.0.0/classic/ckeditor.js"></script>
+
+  
+
+{{-- js ckeditor --}}
+
+<script>
+  ClassicEditor
+          .create( document.querySelector( '.ckeditor' ) )
+          .then( editor => {
+                  console.log( editor );
+          } )
+          .catch( error => {
+                  console.error( error );
+          } );
+</script>
+
+{{-- end js ckeditor --}}
