@@ -1,7 +1,13 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\CompaniesController;
+use App\Http\Controllers\EmployeesController;
+
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -13,11 +19,20 @@ use Illuminate\Support\Facades\Auth;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Auth::routes();
+
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::prefix('admin')
+        ->group(function(){
+        
+        Route::get('/', [DashboardController::class, 'index'])
+            ->name('dashboard.index');
+        Route::resource('companies', CompaniesController::class);
+        Route::resource('employees', EmployeesController::class);
+});
