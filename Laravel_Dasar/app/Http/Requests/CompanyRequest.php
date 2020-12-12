@@ -27,6 +27,7 @@ class CompanyRequest extends FormRequest
             'nama' => 'required',
             'email' => 'required',
             'website' => 'required'
+            
         ];
     }
 }

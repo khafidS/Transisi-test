@@ -6,7 +6,7 @@
     <div class="col">
       <div class="card">
         <div class="card-body">
-          <h4 class="box-title">Daftar Companies</h4>
+          <h4 class="box-title">List Company</h4>
         </div>
         <div class="card-body">
           <div class="table-stats order-table ov-h">
@@ -24,7 +24,7 @@
               <tbody>
                 @forelse ($items as $index => $item)
                 <tr class="text-center">
-                  <td>{{ $index + 1 }}</td>
+                  <td>{{ $items->firstItem() + $index }}</td>
                   <td>{{ $item->nama }}</td>
                   <td>{{ $item->email }}</td>
                   <td>{{ $item->website }}</td>
@@ -57,6 +57,9 @@
             </table>
           </div>
         </div>
+      </div>
+      <div class="d-flex justify-content-center mt-3">
+        {{ $items->links() }}
       </div>
     </div>
   </div>
