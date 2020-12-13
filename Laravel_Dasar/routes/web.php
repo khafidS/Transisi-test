@@ -3,7 +3,7 @@
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CompaniesController;
 use App\Http\Controllers\EmployeesController;
-
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -26,9 +26,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/dashboard',[HomeController::class, 'index'])
+        ->middleware(['user']);
+
 
 
 Route::prefix('admin')
+        ->middleware(['admin'])
         ->group(function(){
         
         Route::get('/', [DashboardController::class, 'index'])

@@ -42,7 +42,14 @@ class EmployeesController extends Controller
      */
     public function create()
     {
-        //
+        $companies = Company::all();
+        $count = $companies->count();
+
+
+        return view('pages.employees.create',[
+            'companies'=>$companies,
+            'count'=>$count
+        ]);
     }
 
     /**
@@ -53,7 +60,18 @@ class EmployeesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nama' => 'string',
+            'email' => 'email'
+        ]);
+
+        Employee::create([
+            'nama' => $request->nama,
+            'email' => $request->email,
+            'company_id' => $request->company
+        ]);
+
+        return redirect()->route('employees.index');
     }
 
     /**
@@ -75,7 +93,21 @@ class EmployeesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $items = Employee::findOrFail($id);
+        $comp = $items->company()->get();
+        $companies = Company::all();
+
+        $count = $companies->count();
+
+
+        // dd($comp[0]->id);
+
+        return view('pages.employees.edit', [
+            'items'=>$items,
+            'comp'=>$comp,
+            'companies'=>$companies,
+            'count'=>$count
+        ]);
     }
 
     /**
@@ -87,7 +119,21 @@ class EmployeesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // dd($request->company);
+        $request->validate([
+            'email' => 'email'
+        ]);
+
+        Employee::where('id', $id)
+                ->update(
+                    [
+                        'nama'=>$request->nama,
+                        'email'=>$request->email,
+                        'company_id'=>$request->company
+                    ]
+            );
+
+        return redirect()->route('employees.index');
     }
 
     /**
@@ -98,6 +144,10 @@ class EmployeesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $des = Employee::findOrFail($id);
+
+        $des->delete();
+
+        return redirect()->route('employees.index');
     }
 }
